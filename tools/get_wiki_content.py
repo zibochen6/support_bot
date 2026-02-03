@@ -126,17 +126,32 @@ def filter_urls_by_keywords(urls: list[str], keywords: list[str]) -> list[str]:
     return out
 
 
+# URL path 中含以下子串的页面会被排除（不抓取）
+EXCLUDE_PATH_SUBSTRINGS = ("r1000", "r2000")
+
+# 页面 title 中含以下子串的也会排除（不保存），不区分大小写
+EXCLUDE_TITLE_SUBSTRINGS = ("r21xx", "r20xx", "r2135", "r1100", "r1000")
+
+
+def should_exclude_by_title(title: str) -> bool:
+    """若标题包含 R21xx、R20xx、R2135、R1100、R1000 等则返回 True，不保存该页。"""
+    if not title or not title.strip():
+        return False
+    t = title.lower()
+    return any(s in t for s in EXCLUDE_TITLE_SUBSTRINGS)
+
+
 def filter_urls_by_tier(urls: list[str]) -> list[str]:
     """
     只保留符合层级规则的 URL：
-    - 排除 path 中含 r1000 的页面（如 recomputer_r1000_home_automation）
+    - 排除 path 中含 R1000、R2000 的页面（如 recomputer_r1000_*, *_r2000_*）
     - 排除其他语言层级（如 /ja/），只保留两层级 /PageName/ 或唯一中文层级 /cn/PageName/
     """
     result = []
     for u in urls:
         path = urlparse(u).path.rstrip("/")
         path_lower = path.lower()
-        if "r1000" in path_lower:
+        if any(excl in path_lower for excl in EXCLUDE_PATH_SUBSTRINGS):
             continue
         segments = [s for s in path.split("/") if s]
         if len(segments) == 1:
