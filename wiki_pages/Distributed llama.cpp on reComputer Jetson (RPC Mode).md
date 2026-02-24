@@ -4,7 +4,7 @@
 
 Running large language models (LLMs) on edge devices like NVIDIA Jetson can be challenging due to memory and compute constraints. This guide demonstrates how to distribute LLM inference across multiple reComputer Jetson devices using llama.cpp's RPC backend, enabling horizontal scaling for more demanding workloads.
 
-[**Get One Now 🖱️**](https://www.seeedstudio.com/reComputer-Robotics-J501-p-6537.html)
+[**Get One Now 🖱️**](https://www.seeedstudio.com/reComputer-Robotics-J5012-with-GMSL-extension-board-p-6682.html)
 
 ## Prerequisites
 

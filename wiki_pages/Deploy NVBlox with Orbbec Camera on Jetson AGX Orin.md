@@ -10,9 +10,9 @@ It builds dense TSDF (Truncated Signed Distance Field) and ESDF (Euclidean Signe
 
 This makes it particularly valuable for edge AI applications where hardware constraints and computational efficiency are critical considerations. This wiki demonstrates how to deploy Isaac ROS NVBlox on **Jetson AGX Orin** with **ROS 2** integration, using an **Orbbec RGB-D camera** and a mobile robot platform to achieve a fully on-device perception and navigation pipeline. 🚀
 
-![](https://media-cdn.seeedstudio.com/media/catalog/product/cache/bb49d3ec4ee05b6f018e93f896b8a25d/5/-/5-100020039-recomputer-mini-j501---carrier-board-for-jetson-agx-orin.jpg)
+![](https://files.seeedstudio.com/wiki/recomputer_robotic_j501/hardware_overview.png.jpg)
 
-[**Get One Now 🖱️**](https://www.seeedstudio.com/reComputer-Mini-J501-Carrier-Board-for-Jetson-AGX-Orin-p-6606.html)
+[**Get One Now 🖱**](https://www.seeedstudio.com/reComputer-Robotics-J5012-with-GMSL-extension-board-p-6682.html)
 
 ## Prerequisites
 

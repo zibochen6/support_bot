@@ -1,8 +1,8 @@
 # Robotics J501 carrier board Hardware and Getting Started
 
-The reComputer Robotics J501 Mini is a compact, high-performance edge AI carrier board designed for advanced robotics. Compatible with NVIDIA Jetson AGX Orin modules (32GB/64GB) in MAXN mode, it delivers up to 275 TOPS of AI performance. Equipped with extensive connectivity options—including dual Gigabit Ethernet ports, M.2 slots for 5G and Wi-Fi/BT modules, 2 USB 3.2 ports, CAN, GMSL2 (via optional expansion), I2C, and UART—it serves as a powerful robotic brain capable of processing complex data from various sensors. Pre-installed with JetPack 6.2.1 and Linux BSP, it ensures seamless deployment.​
+The Robotics J501 Mini carrier is a compact, high-performance edge AI carrier board designed for advanced robotics. Compatible with NVIDIA Jetson AGX Orin modules (32GB/64GB) in MAXN mode, it delivers up to 275 TOPS of AI performance. Equipped with extensive connectivity options—including dual Gigabit Ethernet ports, M.2 slots for 5G and Wi-Fi/BT modules, 2 USB 3.2 ports, CAN, GMSL2 (via optional expansion), I2C, and UART—it serves as a powerful robotic brain capable of processing complex data from various sensors. Pre-installed with JetPack 6.2.1 and Linux BSP, it ensures seamless deployment.​
 
-Supporting frameworks like NVIDIA Isaac ROS, Hugging Face, PyTorch, and ROS 2/1, the reComputer Robotics J501 Mini bridges large language model-driven decision-making with physical robotics control, such as motion planning and sensor fusion. Ideal for the rapid development of autonomous robots, it accelerates time-to-market with ready-to-use interfaces and optimized AI frameworks.
+Supporting frameworks like NVIDIA Isaac ROS, Hugging Face, PyTorch, and ROS 2/1, the Robotics J501 Mini bridges large language model-driven decision-making with physical robotics control, such as motion planning and sensor fusion. Ideal for the rapid development of autonomous robots, it accelerates time-to-market with ready-to-use interfaces and optimized AI frameworks.
 
 ![](https://files.seeedstudio.com/wiki/recomputer-j501-mini/2-100020039-reComputer-Mini-J501---Carrier-Board-for-Jetson-AGX-Orin.jpg)
 
@@ -16,7 +16,7 @@ Supporting frameworks like NVIDIA Isaac ROS, Hugging Face, PyTorch, and ROS 2/1,
 
 ## 📝 Part List
 
-* reComputer Robotics J501-Mini Carrier Board x 1
+* Robotics J501-Mini Carrier Board x 1
 * Power Supply and JST expansion board x 1
 * XT30 to DC cable x 1
 * USB Cable, Type A to Type C x 1

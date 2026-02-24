@@ -41,13 +41,14 @@ if __name__ == "__main__":
         save_url_index(URL_INDEX_PATH, known_urls)
     current_urls = get_urls_by_keywords(KEYWORDS)
     new_urls = [u for u in current_urls if u not in known_urls]
-    n_total, n_new = len(current_urls), len(new_urls)
-    print(f"关键词 {KEYWORDS} 共匹配到 {n_total} 个有效页面，其中 {n_new} 个为新页面")
+    n_total = len(current_urls)
+    print(f"关键词 {KEYWORDS} 共匹配到 {n_total} 个有效页面")
     if not new_urls:
         print("无新页面需要抓取，退出。")
         save_url_index(URL_INDEX_PATH, known_urls)  # 退出前也写回索引
         sys.exit(0)
     ok, skip, fail = 0, 0, 0
+    #抓取页面
     with tqdm(new_urls, desc="抓取进度", unit="页", ncols=80, dynamic_ncols=False) as pbar:
         for url in pbar:
             try:
@@ -56,10 +57,6 @@ if __name__ == "__main__":
                 if not title.strip() and not content.strip():
                     skip += 1
                     pbar.set_postfix_str("跳过: 无内容", refresh=True)
-                    continue
-                if should_exclude_by_title(title):
-                    skip += 1
-                    pbar.set_postfix_str("跳过: 标题含R21xx/R20xx等", refresh=True)
                     continue
                 safe_title = sanitize_filename(title) or "untitled"
                 out_path = os.path.join(WIKI_PAGES_DIR, f"{safe_title}.md")
@@ -72,4 +69,4 @@ if __name__ == "__main__":
                 fail += 1
                 pbar.set_postfix_str(f"失败: {str(e)[:30]}", refresh=True)
     save_url_index(URL_INDEX_PATH, known_urls)
-    print(f"完成: 成功 {ok} 个，跳过 {skip} 个（过滤），失败 {fail} 个，保存至 {WIKI_PAGES_DIR}/")
+    print(f"完成: 成功 {ok} 个，跳过 {skip} 个（无内容），失败 {fail} 个，保存至 {WIKI_PAGES_DIR}/")

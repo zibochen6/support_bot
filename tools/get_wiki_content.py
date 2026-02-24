@@ -16,6 +16,8 @@ def fetch_page(url: str, headers: dict = None):
     """
     请求网页并返回 BeautifulSoup，统一按 UTF-8 解码避免乱码。
     """
+
+    #伪装成浏览器访问（防止被网站拦截）
     default_headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
         "Accept-Charset": "utf-8",
@@ -31,6 +33,7 @@ def fetch_page(url: str, headers: dict = None):
     return BeautifulSoup(text, "html.parser")
 
 
+#将get到的html字符串转化为BeautifulSoup对象方便解析内容
 def parse_html(html: str) -> BeautifulSoup:
     """用 BeautifulSoup 解析 HTML 字符串。"""
     return BeautifulSoup(html, "html.parser")
@@ -45,6 +48,13 @@ def html_to_markdown(html_or_soup: str | BeautifulSoup, selector: str = None, **
     :param kwargs: 传给 markdownify 的选项，如 heading_style="ATX", strip=["script","style"]
     :return: Markdown 字符串
     """
+
+    # 默认选项的作用是：
+    # 给 markdownify 提供一套“基础转换规则”，
+    # 让函数在用户没有指定参数时也能有合理行为。
+    # "heading_style": "ATX"
+    # # 一级标题
+    # ## 二级标题
     default_options = {
         "heading_style": "ATX",      # # 标题
         "strip": ["script", "style"], # 去掉 script/style 标签
@@ -105,12 +115,6 @@ def get_urls_from_sitemap(sitemap_url: str) -> list[str]:
                 urls.append(loc.text.strip())
     return urls
 
-def filter_urls_by_keyword(urls: list[str], keyword: str) -> list[str]:
-    """只保留 URL path 中包含 keyword 的链接（不区分大小写）。"""
-    kw = keyword.lower()
-    return [u for u in urls if kw in urlparse(u).path.lower()]
-
-
 def filter_urls_by_keywords(urls: list[str], keywords: list[str]) -> list[str]:
     """只保留 URL path 中包含任一 keyword 的链接（不区分大小写），去重。"""
     if not keywords:
@@ -129,8 +133,11 @@ def filter_urls_by_keywords(urls: list[str], keywords: list[str]) -> list[str]:
 # URL path 中含以下子串的页面会被排除（不抓取）
 EXCLUDE_PATH_SUBSTRINGS = ("r1000", "r2000")
 
+# R 系列页面（如 recomputer_r1100 / recomputer_industrial_r21xx 等）统一排除
+R_SERIES_SLUG_PATTERN = re.compile(r"^recomputer_(?:industrial_)?r\d", re.IGNORECASE)
+
 # 页面 title 中含以下子串的也会排除（不保存），不区分大小写
-EXCLUDE_TITLE_SUBSTRINGS = ("r21xx", "r20xx", "r2135", "r1100", "r1000")
+EXCLUDE_TITLE_SUBSTRINGS = ("r21xx", "r20xx", "r22xx", "r2135", "r1100", "r1000")
 
 
 def should_exclude_by_title(title: str) -> bool:
@@ -141,10 +148,21 @@ def should_exclude_by_title(title: str) -> bool:
     return any(s in t for s in EXCLUDE_TITLE_SUBSTRINGS)
 
 
+def _is_r_series_slug(slug: str) -> bool:
+    """判断 URL slug 是否为 R 系列页面（recomputer_r**** / recomputer_industrial_r****）。"""
+    if not slug:
+        return False
+    s = slug.lower()
+    if s == "recomputer_r":
+        return True
+    return bool(R_SERIES_SLUG_PATTERN.match(slug))
+
+
 def filter_urls_by_tier(urls: list[str]) -> list[str]:
     """
     只保留符合层级规则的 URL：
     - 排除 path 中含 R1000、R2000 的页面（如 recomputer_r1000_*, *_r2000_*）
+    - 排除 R 系列页面（如 recomputer_r1100_*, recomputer_industrial_r2xxx_*）
     - 排除其他语言层级（如 /ja/），只保留两层级 /PageName/ 或唯一中文层级 /cn/PageName/
     """
     result = []
@@ -154,9 +172,15 @@ def filter_urls_by_tier(urls: list[str]) -> list[str]:
         if any(excl in path_lower for excl in EXCLUDE_PATH_SUBSTRINGS):
             continue
         segments = [s for s in path.split("/") if s]
+        #英文主页面
         if len(segments) == 1:
+            if _is_r_series_slug(segments[0]):
+                continue
             result.append(u)
+        #中文页面
         elif len(segments) == 2 and segments[0].lower() == "cn":
+            if _is_r_series_slug(segments[1]):
+                continue
             result.append(u)
     return result
 
@@ -186,12 +210,6 @@ def get_urls_from_page(base_url: str, keyword: str) -> list[str]:
     return list(seen)
 
 
-def crawl_by_keyword(keyword: str, sitemap_url: str = "https://wiki.seeedstudio.com/sitemap.xml"):
-    urls = get_urls_from_sitemap(sitemap_url)
-    urls = filter_urls_by_keyword(urls, keyword)
-    print(f"关键词 '{keyword}' 匹配到 {len(urls)} 个页面")
-
-
 def sanitize_filename(name: str) -> str:
     """去掉文件名非法字符。"""
     for c in '\\/:*?"<>|':
@@ -204,7 +222,8 @@ class GetWikiContent:
         self.url = url
 
     def get_content(self) -> tuple[str, str]:
-        html = fetch_page(self.url)
+        html = fetch_page(self.url)#用 BeautifulSoup 解析 HTML。BeautifulSoup：自动构建 DOM 树。方便提取内容
+        #CSS 选择器（CSS Selector）在 HTML 里“选中某一块元素”的规则字符串。选中 class="theme-doc-markdown" 的元素
         title, markdown_text = html_to_markdown(html, selector=".theme-doc-markdown")
         markdown_text = remove_resource(markdown_text)
         return _ensure_utf8(title), _ensure_utf8(markdown_text)

@@ -1194,7 +1194,7 @@ reComputer Industrial does not come with WiFi and Bluetooth out-of-the-box. But 
 
 ### Connection Overview
 
-* **Step 1:** If you want to solder the **BL-M8723DU1** module by yourself, you can solder it. But we do not recommend this because if you damage the board in the process, the warranty will be void. What we recommend is to use our professional service to help you solder this module onto the board and you can send an email to [[email protected]](/cdn-cgi/l/email-protection#9cf3eef8f9eedceff9f9f9f8b2ffff) with your request.
+* **Step 1:** If you want to solder the **BL-M8723DU1** module by yourself, you can solder it. But we do not recommend this because if you damage the board in the process, the warranty will be void. What we recommend is to use our professional service to help you solder this module onto the board and you can send an email to [[email protected]](/cdn-cgi/l/email-protection#dab5a8bebfa89aa9bfbfbfbef4b9b9) with your request.
 
 ![](https://files.seeedstudio.com/wiki/reComputer-Industrial/31.jpg)
 

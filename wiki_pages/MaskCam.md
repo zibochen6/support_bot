@@ -4,7 +4,7 @@
 
 Due to the ravages of the COVID - 19, in many public places, we often see the requirement to wear a mask. There are usually managers at the gate of the area to observe whether people are wearing masks. Maybe it's a very simple task for humans, but if we combines it with Jetson Nano, graphics capture and edge computing with AI, it will be a very interesting and socially valuable task.
 
-MaskCam was developed by Berkeley Design Technology, Inc. (BDTI) and Tryolabs S.A., with development funded by NVIDIA. MaskCam is offered under the MIT License. For more information about MaskCam, please see the [report from BDTI](https://www.bdti.com/maskcam). If you have questions, please email BDTI at [[email protected]](/cdn-cgi/l/email-protection#3a575b4951595b577a585e4e5314595557).
+MaskCam was developed by Berkeley Design Technology, Inc. (BDTI) and Tryolabs S.A., with development funded by NVIDIA. MaskCam is offered under the MIT License. For more information about MaskCam, please see the [report from BDTI](https://www.bdti.com/maskcam). If you have questions, please email BDTI at [[email protected]](/cdn-cgi/l/email-protection#066b67756d65676b466462726f2865696b).
 
 In this project, we will use the [NVIDIA® Jetson Nano™ 4GB Developer Kit](https://www.seeedstudio.com/NVIDIA-Jetson-Nano-Development-Kit-B01-p-4437.html) along with other accessories. At the same time, you can choose the [A206 Carrier Board](https://www.seeedstudio.com/A206-Carrier-Board-for-Jetson-Nano-Xavier-NX-p-5132.html) from Seeed, which has the same size and functional design as NVIDIA's official carrier board, and also, it has excellent stability and versatility.
 

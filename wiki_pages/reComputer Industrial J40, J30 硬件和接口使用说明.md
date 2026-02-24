@@ -1287,7 +1287,7 @@ reComputer Industrial 开箱即用时不带有 WiFi 和蓝牙功能。但是 PCB
 
 ### 连接概述
 
-* **步骤 1：** 如果您想自己焊接 **BL-M8723DU1** 模块，您可以进行焊接。但我们不建议这样做，因为如果您在过程中损坏了板子，保修将失效。我们建议使用我们的专业服务来帮助您将此模块焊接到板上，您可以发送电子邮件至 [[email protected]](/cdn-cgi/l/email-protection#e18e93858493a19284848485cf8282) 提出您的请求。
+* **步骤 1：** 如果您想自己焊接 **BL-M8723DU1** 模块，您可以进行焊接。但我们不建议这样做，因为如果您在过程中损坏了板子，保修将失效。我们建议使用我们的专业服务来帮助您将此模块焊接到板上，您可以发送电子邮件至 [[email protected]](/cdn-cgi/l/email-protection#bed1ccdadbccfecddbdbdbda90dddd) 提出您的请求。
 
 ![](https://files.seeedstudio.com/wiki/reComputer-Industrial/31.jpg)
 

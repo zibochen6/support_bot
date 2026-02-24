@@ -8,6 +8,10 @@
 
 ## 📦 Robot Kits
 
+### 🤗 Reachy
+
+[Reachy Mini Getting StartedNew](/reachymini_getting_started)
+
 ### 🤗 SO-Arm
 
 [SO100/101 Arm](/lerobot_so100m_new/)[SO10x Arm with LeIsaac](/simulate_soarm101_by_leisaac/)[Phospho Lerobot](/control_robotic_arm_via_phospho/)[So Arm RL TrainingNew](/training_soarm101_policy_with_isaacLab/)[SO101 with NVIDIA GR00TNew](/fine_tune_gr00t_n1.5_for_lerobot_so_arm_and_deploy_on_jetson_thor/)
