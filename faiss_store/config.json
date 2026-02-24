@@ -1,0 +1,10 @@
+{
+  "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+  "docs_dir": "/Users/chenzibo/data/project/support_bot/wiki_pages_cleaned",
+  "chunk_size": 400,
+  "overlap": 60,
+  "min_words": 30,
+  "files": 257,
+  "chunks": 934,
+  "embedding_dim": 384
+}
