@@ -1,10 +1,15 @@
 {
-  "model_name": "sentence-transformers/all-MiniLM-L6-v2",
-  "docs_dir": "/Users/chenzibo/data/project/support_bot/wiki_pages_cleaned",
-  "chunk_size": 400,
-  "overlap": 60,
-  "min_words": 30,
-  "files": 257,
-  "chunks": 934,
-  "embedding_dim": 384
+  "docs_dir": "D:\\project\\support_bot\\wiki_pages_cleaned",
+  "embedding_model": "BAAI/bge-m3",
+  "normalize_embeddings": true,
+  "faiss_metric": "inner_product",
+  "max_tokens": 420,
+  "overlap_tokens": 60,
+  "min_tokens": 30,
+  "batch_size": 32,
+  "files_indexed": 257,
+  "chunks_before_dedup": 7185,
+  "chunks_after_dedup": 6674,
+  "dedup_dropped": 511,
+  "embedding_dim": 1024
 }
